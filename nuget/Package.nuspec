@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Skybrud.BorgerDk</id>
+        <version>1.1.0</version>
+        <authors>Skybrud.dk, Anders Bjerner</authors>
+        <owners>Skybrud.dk</owners>
+        <licenseUrl>https://github.com/skybrud/Skybrud.BorgerDk/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/skybrud/Skybrud.BorgerDk</projectUrl>
+        <iconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Standalone C#-bibliotek til kommunikation med Borger.dk's webservices.</description>
+        <language>da-DK</language>
+        <tags>Skybrud, Borger.dk, selvbetjening, web service, artikel</tags>
+        <dependencies>
+            <dependency id="HtmlAgilityPack" version="[1.4.6, 2.0.0)" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\src\Skybrud.BorgerDk\bin\Release\ArticleExport.dll" target="lib/ArticleExport.dll" />
+        <file src="..\src\Skybrud.BorgerDk\bin\Release\Skybrud.BorgerDk.dll" target="lib/Skybrud.BorgerDk.dll" />
+    </files>
+</package>
