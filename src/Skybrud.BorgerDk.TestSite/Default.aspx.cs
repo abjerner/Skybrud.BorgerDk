@@ -8,7 +8,9 @@ namespace Skybrud.BorgerDk.TestSite {
 
             BorgerDkService service = new BorgerDkService(BorgerDkEndpoint.Default, BorgerDkMunicipality.SlagelseKommune);
 
-            var art = service.GetArticleFromId(556);
+            var id = service.GetArticleIdFromUrl("https://www.borger.dk/Sider/Drikkevand-og-vandforbrug.aspx");
+
+            var art = service.GetArticleFromId(id);
 
             Response.ContentType = "text/xml";
             Response.Write(art.ToXElement(BorgerDkMunicipality.SlagelseKommune.Code, 1400));
