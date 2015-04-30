@@ -134,8 +134,8 @@ namespace Skybrud.BorgerDk {
                         // Trigger exception if empty
                         if (children.Length == 0) throw new Exception("What's happening? #1 (" + microId + ")");
 
-                        // Trigger exception if no <h2>
-                        if (children[0].Name != "h2") throw new Exception("What's happening? #2 (" + microId + ")");
+                        // Trigger exception if no <h2> (or <h3> - thanks for that change)
+                        if (children[0].Name != "h2" && children[0].Name != "h3") throw new Exception("What's happening? #2 (" + microId + ")");
 
                         // Get the title from the <h2>
                         string title = children[0].InnerText;
@@ -144,6 +144,7 @@ namespace Skybrud.BorgerDk {
                             Parent = block,
                             Id = microId,
                             Title = title.Trim(),
+                            TitleType = children[0].Name,
                             Content = child.InnerHtml.Trim(),
                             Children = (
                                 from n in children

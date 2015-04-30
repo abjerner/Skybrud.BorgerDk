@@ -11,6 +11,8 @@ namespace Skybrud.BorgerDk.Elements {
 
         public string Title { get; internal set; }
 
+        public string TitleType { get; internal set; }
+
         public string Content { get; internal set; }
 
         public IEnumerable<XElement> Children { get; internal set; }
@@ -27,6 +29,7 @@ namespace Skybrud.BorgerDk.Elements {
                 "microArticle",
                 new XAttribute("id", Id),
                 new XElement("title", new XCData(Title)),
+                new XElement("titletype", TitleType),
                 new XElement("html", new XCData(Content)),
                 xChildren
             );
