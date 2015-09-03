@@ -67,9 +67,9 @@ namespace Skybrud.BorgerDk {
         public BorgerDkArticle GetArticleFromId(int articleId) {
             return BorgerDkArticle.GetFromArticle(
                 this,
-                _client.GetArticleByID(articleId, Municipality.Code == 0 ? null : (int?) Municipality.Code)
+                _client.GetArticleByID(articleId, Municipality.Code == 0 ? null : (int?) Municipality.Code),
+                Municipality
             );
-
         }
 
         public BorgerDkMunicipality[] GetMunicipalityList() {

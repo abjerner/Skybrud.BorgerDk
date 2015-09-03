@@ -28,6 +28,11 @@ namespace Skybrud.BorgerDk {
         public string Url { get; private set; }
 
         /// <summary>
+        /// Gets a reference to the municipality of the article.
+        /// </summary>
+        public BorgerDkMunicipality Municipality { get; private set; }
+
+        /// <summary>
         /// The title of the article.
         /// </summary>
         public string Title { get; private set; }
@@ -86,6 +91,12 @@ namespace Skybrud.BorgerDk {
         }
 
         public static BorgerDkArticle GetFromArticle(BorgerDkService service, Article article) {
+            return GetFromArticle(service, article, null);
+        }
+
+        public static BorgerDkArticle GetFromArticle(BorgerDkService service, Article article, BorgerDkMunicipality municipality) {
+
+            municipality = municipality ?? BorgerDkMunicipality.NoMunicipality;
 
             // Check if "service" or "article" is null
             if (service == null) throw new ArgumentNullException("service");
@@ -95,6 +106,7 @@ namespace Skybrud.BorgerDk {
                 Id = article.ArticleID,
                 Domain = service.Endpoint.Domain,
                 Url = article.ArticleUrl.Split('?')[0],
+                Municipality = municipality,
                 Title = article.ArticleTitle,
                 Header = article.ArticleHeader,
                 Published = article.PublishingDate,
@@ -228,7 +240,7 @@ namespace Skybrud.BorgerDk {
             return temp;
 
         }
-    
+
     }
 
 }
