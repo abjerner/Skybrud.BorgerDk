@@ -62,6 +62,7 @@ namespace Skybrud.BorgerDk {
             // make constructor private
         }
 
+        [Obsolete("This is a legacy method and really shouldn't be used. Use method overload instead.")]
         public XElement ToXElement(int municipalityId, int reloadInterval) {
 
             XElement xElements = new XElement("xml");
@@ -77,6 +78,33 @@ namespace Skybrud.BorgerDk {
                 new XElement("url", Url),
                 new XElement("municipalityid", municipalityId),
                 new XElement("reloadinterval", reloadInterval),
+                new XElement("lastreloaded", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                new XElement("publishingdate", Published.ToString("yyyy-MM-dd HH:mm:ss")),
+                new XElement("lastupdated", Modified.ToString("yyyy-MM-dd HH:mm:ss")),
+                new XElement("title", Title),
+                new XElement("header", Header),
+                new XElement("html", new XCData(Content)),
+                xElements
+            );
+
+            return xArticle;
+
+        }
+
+        public XElement ToXElement() {
+
+            XElement xElements = new XElement("xml");
+
+            foreach (BorgerDkElement element in Elements) {
+                xElements.Add(element.ToXElement());
+            }
+
+            XElement xArticle = new XElement(
+                "article",
+                new XElement("id", Id),
+                new XElement("domain", Domain),
+                new XElement("url", Url),
+                new XElement("municipalityid", Municipality.Code),
                 new XElement("lastreloaded", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                 new XElement("publishingdate", Published.ToString("yyyy-MM-dd HH:mm:ss")),
                 new XElement("lastupdated", Modified.ToString("yyyy-MM-dd HH:mm:ss")),
