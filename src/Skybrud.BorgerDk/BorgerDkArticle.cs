@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Xml.Linq;
 using HtmlAgilityPack;
 using Skybrud.BorgerDk.Elements;
@@ -135,8 +136,8 @@ namespace Skybrud.BorgerDk {
                 Domain = service.Endpoint.Domain,
                 Url = article.ArticleUrl.Split('?')[0],
                 Municipality = municipality,
-                Title = article.ArticleTitle,
-                Header = article.ArticleHeader,
+                Title = HttpUtility.HtmlDecode(article.ArticleTitle),
+                Header = HttpUtility.HtmlDecode(article.ArticleHeader),
                 Published = article.PublishingDate,
                 Modified = article.LastUpdated,
                 Content = article.Content
