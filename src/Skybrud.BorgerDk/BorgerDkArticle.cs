@@ -9,6 +9,9 @@ using www.borger.dk._2009.WSArticleExport.v1.types;
 
 namespace Skybrud.BorgerDk {
 
+    /// <summary>
+    /// Class representing an article received from the Borger.dk web service.
+    /// </summary>
     public class BorgerDkArticle {
 
         #region Properties
@@ -53,8 +56,14 @@ namespace Skybrud.BorgerDk {
         /// </summary>
         public DateTime Modified { get; private set; }
 
+        /// <summary>
+        /// Gets the raw HTML making up the content of the article.
+        /// </summary>
         public string Content { get; private set; }
 
+        /// <summary>
+        /// Gets an array of all elements parsed from the article content.
+        /// </summary>
         public BorgerDkElement[] Elements { get; private set; }
 
         /// <summary>
@@ -64,9 +73,13 @@ namespace Skybrud.BorgerDk {
         
         #endregion
 
-        private BorgerDkArticle() {
-            // make constructor private
-        }
+        #region Constructors
+
+        private BorgerDkArticle() { }
+
+        #endregion
+
+        #region Constructors
 
         [Obsolete("This is a legacy method and really shouldn't be used. Use method overload instead.")]
         public XElement ToXElement(int municipalityId, int reloadInterval) {
@@ -276,6 +289,8 @@ namespace Skybrud.BorgerDk {
             return temp;
 
         }
+
+        #endregion
 
     }
 
