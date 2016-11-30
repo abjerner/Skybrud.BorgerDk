@@ -57,6 +57,11 @@ namespace Skybrud.BorgerDk {
 
         public BorgerDkElement[] Elements { get; private set; }
 
+        /// <summary>
+        /// Gets the byline of the article.
+        /// </summary>
+        public string ByLine { get; private set; }
+        
         #endregion
 
         private BorgerDkArticle() {
@@ -215,10 +220,12 @@ namespace Skybrud.BorgerDk {
                         }
                     }
 
+                    temp.ByLine = node.InnerHtml.Trim();
+
                     BorgerDkTextElement element = new BorgerDkTextElement {
                         Type = id,
                         Title = "Skrevet af",
-                        Content = node.InnerHtml.Trim(),
+                        Content = temp.ByLine,
                         Children = new [] { xChild }
                     };
 
