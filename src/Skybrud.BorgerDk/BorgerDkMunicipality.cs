@@ -5,37 +5,10 @@ using System.Linq;
 
 namespace Skybrud.BorgerDk {
 
+    /// <summary>
+    /// Class representing a reference to a municipality.
+    /// </summary>
     public class BorgerDkMunicipality {
-
-        public int Code { get; private set; }
-        public string Name { get; private set; }
-        public string NameLong { get; private set; }
-
-        public static BorgerDkMunicipality[] Values {
-            get {
-                return new[] {
-                    NoMunicipality, KoebenhavnsKommune, FrederiksbergKommune, BallerupKommune, BroendbyKommune,
-                    DragoerKommune, GentofteKommune, GladsaxeKommune, GlostrupKommune, HerlevKommune, AlbertslundKommune,
-                    HvidovreKommune, HoejeTaastrupKommune, LyngbyTaarbaekKommune, RoedovreKommune, IshoejKommune,
-                    TaarnbyKommune, VallensbaekKommune, FuresoeKommune, AlleroedKommune, FredensborgKommune,
-                    HelsingoerKommune, HilleroedKommune, HoersholmKommune, RudersdalKommune, EgedalKommune,
-                    FrederikssundKommune, GreveKommune, KoegeKommune, HalsnaesKommune, RoskildeKommune,
-                    SolroedKommune, GribskovKommune, OdsherredKommune, HolbaekKommune, FaxeKommune,
-                    KalundborgKommune, RingstedKommune, SlagelseKommune, StevnsKommune, SoroeKommune, LejreKommune,
-                    LollandKommune, NaestvedKommune, GuldborgsundKommune, VordingborgKommune, BornholmsRegionskommune,
-                    MiddelfartKommune, AssensKommune, FaaborgMidtfynKommune, KertemindeKommune, NyborgKommune,
-                    OdenseKommune, SvendborgKommune, NordfynsKommune, LangelandKommune, AeroeKommune,
-                    HaderslevKommune, BillundKommune, SoenderborgKommune, ToenderKommune, EsbjergKommune,
-                    FanoeKommune, VardeKommune, VejenKommune, AabenraaKommune, FredericiaKommune, HorsensKommune,
-                    KoldingKommune, VejleKommune, HerningKommune, HolstebroKommune, LemvigKommune, StruerKommune,
-                    SyddjursKommune, NorddjursKommune, FavrskovKommune, OdderKommune, RandersKommune,
-                    SilkeborgKommune, SamsoeKommune, SkanderborgKommune, AarhusKommune, IkastBrandeKommune,
-                    RingkoebingSkjernKommune, HedenstedKommune, MorsoeKommune, SkiveKommune, ThistedKommune,
-                    ViborgKommune, BroenderslevKommune, FrederikshavnKommune, VesthimmerlandsKommune, LaesoeKommune,
-                    RebildKommune, MariagerfjordKommune, JammerbugtKommune, AalborgKommune, HjoerringKommune
-                };
-            }
-        }
 
         #region Contants
 
@@ -141,17 +114,83 @@ namespace Skybrud.BorgerDk {
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the code/ID of the municipality.
+        /// </summary>
+        public int Code { get; private set; }
+
+        /// <summary>
+        /// Gets the name of the municipality.
+        /// </summary>
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// Gets the full name of the municipality.
+        /// </summary>
+        public string NameLong { get; private set; }
+
+        /// <summary>
+        /// Gets an array of all municipalities.
+        /// </summary>
+        public static BorgerDkMunicipality[] Values {
+            get {
+                return new[] {
+                    NoMunicipality, KoebenhavnsKommune, FrederiksbergKommune, BallerupKommune, BroendbyKommune,
+                    DragoerKommune, GentofteKommune, GladsaxeKommune, GlostrupKommune, HerlevKommune, AlbertslundKommune,
+                    HvidovreKommune, HoejeTaastrupKommune, LyngbyTaarbaekKommune, RoedovreKommune, IshoejKommune,
+                    TaarnbyKommune, VallensbaekKommune, FuresoeKommune, AlleroedKommune, FredensborgKommune,
+                    HelsingoerKommune, HilleroedKommune, HoersholmKommune, RudersdalKommune, EgedalKommune,
+                    FrederikssundKommune, GreveKommune, KoegeKommune, HalsnaesKommune, RoskildeKommune,
+                    SolroedKommune, GribskovKommune, OdsherredKommune, HolbaekKommune, FaxeKommune,
+                    KalundborgKommune, RingstedKommune, SlagelseKommune, StevnsKommune, SoroeKommune, LejreKommune,
+                    LollandKommune, NaestvedKommune, GuldborgsundKommune, VordingborgKommune, BornholmsRegionskommune,
+                    MiddelfartKommune, AssensKommune, FaaborgMidtfynKommune, KertemindeKommune, NyborgKommune,
+                    OdenseKommune, SvendborgKommune, NordfynsKommune, LangelandKommune, AeroeKommune,
+                    HaderslevKommune, BillundKommune, SoenderborgKommune, ToenderKommune, EsbjergKommune,
+                    FanoeKommune, VardeKommune, VejenKommune, AabenraaKommune, FredericiaKommune, HorsensKommune,
+                    KoldingKommune, VejleKommune, HerningKommune, HolstebroKommune, LemvigKommune, StruerKommune,
+                    SyddjursKommune, NorddjursKommune, FavrskovKommune, OdderKommune, RandersKommune,
+                    SilkeborgKommune, SamsoeKommune, SkanderborgKommune, AarhusKommune, IkastBrandeKommune,
+                    RingkoebingSkjernKommune, HedenstedKommune, MorsoeKommune, SkiveKommune, ThistedKommune,
+                    ViborgKommune, BroenderslevKommune, FrederikshavnKommune, VesthimmerlandsKommune, LaesoeKommune,
+                    RebildKommune, MariagerfjordKommune, JammerbugtKommune, AalborgKommune, HjoerringKommune
+                };
+            }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="code"/> and <paramref name="name"/>.
+        /// </summary>
+        /// <param name="code">The code/ID of the municipality.</param>
+        /// <param name="name">The name of the municipality.</param>
         internal BorgerDkMunicipality(int code, string name) {
             Code = code;
             Name = name;
             NameLong = name + " Kommune";
         }
 
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="code"/>, <paramref name="name"/> and
+        /// <paramref name="nameLong"/>.
+        /// </summary>
+        /// <param name="code">The code/ID of the municipality.</param>
+        /// <param name="name">The name of the municipality.</param>
+        /// <param name="nameLong">The full name of the municipality.</param>
         internal BorgerDkMunicipality(int code, string name, string nameLong) {
             Code = code;
             Name = name;
             NameLong = nameLong;
         }
+
+        #endregion
+
+        #region Static methods
 
         public static IEnumerable<BorgerDkMunicipality> Where(Func<BorgerDkMunicipality, bool> predicate) {
             return Values.Where(predicate);
@@ -168,6 +207,8 @@ namespace Skybrud.BorgerDk {
         public static BorgerDkMunicipality GetFromCode(string code) {
             return Values.FirstOrDefault(x => x.Code.ToString(CultureInfo.InvariantCulture) == code) ?? NoMunicipality;
         }
+
+        #endregion
 
     }
 
