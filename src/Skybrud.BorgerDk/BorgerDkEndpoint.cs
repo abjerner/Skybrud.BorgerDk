@@ -86,9 +86,17 @@ namespace Skybrud.BorgerDk {
         /// </summary>
         /// <param name="url">The URL to validate.</param>
         public bool IsValidUrl(string url) {
-            if (url == null) return false;
+            
+            // Obviously an empty URL is not valid
+            if (String.IsNullOrWhiteSpace(url)) return false;
             url = url.Split('?')[0];
-            return url.EndsWith(".aspx") && url.StartsWith("https://" + Domain + "/" + SubFolder + "/");
+            
+            // In December 2016, Borger.dk moved to a new CMS that uses a
+            // different URL structure. This means that we can't really tell
+            // whether an URL refers to an article or just a normal page. So
+            // for now, we just validate the domain.
+            return url.StartsWith("https://" + Domain + "/");
+        
         }
 
         #endregion
