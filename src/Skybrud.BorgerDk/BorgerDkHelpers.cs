@@ -8,18 +8,32 @@ using HtmlAgilityPack;
 
 namespace Skybrud.BorgerDk {
 
-    internal static class BorgerDkHelpers {
+    public static class BorgerDkHelpers {
 
         internal static HtmlNode[] GetNonTextChildren(HtmlNode node) {
             return node.ChildNodes.Where(child => !(child is HtmlTextNode)).ToArray();
         }
 
-        internal static XElement ToXElement(HtmlNode node) {
+        public static XElement ToXElement(HtmlNode node) {
 
-            XElement xElement = new XElement(node.Name);
+            XElement xElement;
 
-            foreach (var attr in node.Attributes) {
+            try {
+                xElement = new XElement(node.Name);
+            } catch (Exception ex) {
+                throw new Exception("Unable to create new XML element with name: " + node.Name, ex);
+            }
+            
+            HashSet<string> attributes = new HashSet<string>();
+
+            foreach (HtmlAttribute attr in node.Attributes) {
+
+                // Prevent duplicate attributes 
+                if (attributes.Contains(attr.Name)) continue;
+                attributes.Add(attr.Name);
+
                 xElement.Add(new XAttribute(attr.Name, attr.Value.Trim()));
+
             }
 
             foreach (var child in node.ChildNodes) {
@@ -33,7 +47,9 @@ namespace Skybrud.BorgerDk {
                     if (innerText.Trim() == "") continue;
                     xElement.Add(HttpUtility.HtmlDecode(innerText));
                 } else {
+
                     if (child.Name == "#comment") continue;
+
                     if (child.Name == "a") {
                         if (child.InnerText == "") continue;
                         if (child.GetAttributeValue("target", "") == "") {
@@ -43,6 +59,7 @@ namespace Skybrud.BorgerDk {
                             }
                         }
                     }
+
                     if (child.Name == "br") {
                         xElement.Add(new XElement("br"));
                         continue;
@@ -57,8 +74,8 @@ namespace Skybrud.BorgerDk {
                         XElement xChild = ToXElement(child);
                         if (!xChild.Attributes().Any() && xChild.Name != "br" && xChild.Name != "hr" && xChild.Value == "") continue;
                         xElement.Add(xChild);
-                    } catch (Exception) {
-                        throw new Exception(child.Name);
+                    } catch (Exception ex) {
+                        throw new Exception("Failed converting HTML node to XML\r\n\r\nName: " + child.Name + "\r\n\r\n" + child.ParentNode.OuterHtml, ex);
                     }
                 }
             }
