@@ -47,6 +47,12 @@ namespace Skybrud.BorgerDk {
                         xElement.Add(new XElement("br"));
                         continue;
                     }
+
+                    if (child.Name == "ul" || child.Name == "ol" || child.Name == "li") {
+                        xElement.Add(ToXElement(child));
+                        continue;
+                    }
+
                     try {
                         XElement xChild = ToXElement(child);
                         if (!xChild.Attributes().Any() && xChild.Name != "br" && xChild.Name != "hr" && xChild.Value == "") continue;
